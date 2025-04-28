@@ -1,132 +1,167 @@
 /* Made with ❤️ by Mehul Uniyal */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+}
+
+.container {
+  background: #fff;
+  padding: 3rem 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 480px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  color: #333;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+h2 i {
+  color: #af4d98;
+}
+
+form {
+  margin-top: 2rem;
+}
+
+.amount {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.amount p {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+  font-size: 1rem;
+}
+
+.amount input {
+  border: 1px solid #ccc;
+  height: 3.2rem;
+  width: 100%;
+  padding: 0 1rem;
+  font-size: 1rem;
+  border-radius: 0.8rem;
+  background-color: #f9f9f9;
+}
+
+/* Dropdown container */
+.dropdown {
+  margin: 2rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.from, .to {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.select-container {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 0.8rem;
+  padding: 0.6rem 1rem;
+  background: #f9f9f9;
+}
+
+.select-container img {
+  width: 34px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.select-container select {
+  background: transparent;
+  font-weight: 500;
+  font-size: 1rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Swap Icon */
+.dropdown i {
+  margin: 0 auto;
+  font-size: 2rem;
+  color: #af4d98;
+  cursor: pointer;
+  transform: rotate(90deg);
+}
+
+/* Exchange rate text */
+.msg {
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Button */
+form button {
+  background-color: #af4d98;
+  color: #fff;
+  height: 3.5rem;
+  width: 100%;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.8rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+  background-color: #8e3d7d;
+  transform: scale(1.03);
+}
+
+form button i {
+  margin-right: 0.5rem;
+}
+
+/* Footer */
+.footer {
+  margin-top: 2.5rem;
+  font-size: 0.95rem;
+  color: #777;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
   .container {
-    background: #fff;
-    padding: 2.5rem 2rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
+    padding: 2.5rem 1.5rem;
   }
-  
-  h2 {
-    margin-bottom: 1.5rem;
-    color: #333;
-    font-size: 1.8rem;
-  }
-  
-  form {
-    margin-top: 1.5rem;
-  }
-  
-  .amount {
-    margin-bottom: 1.5rem;
-    text-align: left;
-  }
-  
-  .amount p {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #555;
-  }
-  
-  .amount input {
-    border: 1px solid #ccc;
-    height: 3rem;
-    width: 100%;
-    padding: 0 1rem;
-    font-size: 1rem;
-    border-radius: 0.75rem;
-    background-color: #f9f9f9;
-  }
-  
-  .dropdown {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 2rem 0 1rem;
-  }
-  
-  .dropdown i {
-    font-size: 1.8rem;
-    margin: 0 1rem;
-    color: #af4d98;
-  }
-  
-  .select-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.75rem;
-    padding: 0.5rem 0.8rem;
-    background: #f9f9f9;
-  }
-  
+
   .select-container img {
-    width: 30px;
-    border-radius: 50%;
+    width: 28px;
+    height: 20px;
   }
-  
-  .select-container select {
-    background: transparent;
-    font-weight: 500;
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-    outline: none;
-  }
-  
-  .msg {
-    margin: 2rem 0;
-    font-size: 1.1rem;
-    color: #333;
-    font-weight: 600;
-  }
-  
-  form button {
-    background-color: #af4d98;
-    color: #fff;
-    height: 3rem;
-    width: 100%;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 0.75rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  form button:hover {
-    background-color: #8e3d7d;
-    transform: scale(1.03);
-  }
-  
-  form button i {
-    margin-right: 0.5rem;
-  }
-  
-  /* Footer Styling */
-  .footer {
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
+}
