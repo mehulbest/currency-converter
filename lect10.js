@@ -2,27 +2,12 @@ const BASE_URL = "https://open.er-api.com/v6/latest";
 
 const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("form button");
-const exchangeIcon = document.querySelector(".dropdown i");
 const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select");
 const msg = document.querySelector(".msg");
+const exchangeIcon = document.querySelector(".swap-icon");
 
-exchangeIcon.addEventListener("click", () => {
-  // swap values
-  let temp = fromCurr.value;
-  fromCurr.value = toCurr.value;
-  toCurr.value = temp;
-
-  // update flags
-  updateFlag(fromCurr);
-  updateFlag(toCurr);
-
-  // update exchange rate after swap
-  updateExchangeRate();
-});
-
-
-// Define top currencies with full names
+// Top currencies with full names
 const topCurrencies = {
   USD: "United States Dollar",
   EUR: "Euro",
@@ -33,8 +18,7 @@ const topCurrencies = {
 
 // Populate dropdowns
 for (let select of dropdowns) {
-
-  // First add top currencies
+  // Add top 5 currencies first
   for (let currCode in topCurrencies) {
     let newOption = document.createElement("option");
     newOption.innerText = `${currCode} - ${topCurrencies[currCode]}`;
@@ -42,17 +26,15 @@ for (let select of dropdowns) {
     select.append(newOption);
   }
 
-  // Add a separator
+  // Add separator
   let separator = document.createElement("option");
   separator.innerText = "───────────────";
   separator.disabled = true;
   select.append(separator);
 
-  // Then add all other currencies
+  // Add other currencies
   for (let currCode in countryList) {
-    // Skip if already added in topCurrencies
-    if (topCurrencies[currCode]) continue;
-
+    if (topCurrencies[currCode]) continue; // skip already added
     let newOption = document.createElement("option");
     newOption.innerText = currCode;
     newOption.value = currCode;
@@ -68,18 +50,18 @@ for (let select of dropdowns) {
   });
 }
 
-// Update flag images
+// Update country flag
 function updateFlag(element) {
   let currCode = element.value;
   let countryCode = countryList[currCode];
-  if (countryCode) {  // Protect against separator selection
+  if (countryCode) {
     let newSrc = `https://flagsapi.com/${countryCode}/shiny/64.png`;
     let img = element.parentElement.querySelector("img");
     img.src = newSrc;
   }
 }
 
-// Fetch exchange rate and update message
+// Fetch and update exchange rate
 async function updateExchangeRate() {
   let amount = document.querySelector(".amount input");
   let amtVal = amount.value;
@@ -100,13 +82,29 @@ async function updateExchangeRate() {
   }
 }
 
-// Button click to update rate
+// Button click
 btn.addEventListener("click", (evt) => {
   evt.preventDefault();
   updateExchangeRate();
 });
 
-// Fetch actual rate immediately when page loads
+// Swap button click
+exchangeIcon.addEventListener("click", () => {
+  let temp = fromCurr.value;
+  fromCurr.value = toCurr.value;
+  toCurr.value = temp;
+  updateFlag(fromCurr);
+  updateFlag(toCurr);
+  updateExchangeRate();
+
+  // Optional: little animation on swap
+  exchangeIcon.classList.add("rotate-animation");
+  setTimeout(() => {
+    exchangeIcon.classList.remove("rotate-animation");
+  }, 400);
+});
+
+// On page load
 window.addEventListener("load", () => {
   updateExchangeRate();
 });
