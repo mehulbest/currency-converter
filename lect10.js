@@ -2,9 +2,25 @@ const BASE_URL = "https://open.er-api.com/v6/latest";
 
 const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("form button");
+const exchangeIcon = document.querySelector(".dropdown i");
 const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select");
 const msg = document.querySelector(".msg");
+
+exchangeIcon.addEventListener("click", () => {
+  // swap values
+  let temp = fromCurr.value;
+  fromCurr.value = toCurr.value;
+  toCurr.value = temp;
+
+  // update flags
+  updateFlag(fromCurr);
+  updateFlag(toCurr);
+
+  // update exchange rate after swap
+  updateExchangeRate();
+});
+
 
 // Define top currencies with full names
 const topCurrencies = {
